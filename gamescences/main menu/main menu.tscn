@@ -11,5 +11,8 @@ margin_bottom = 20.0
 rect_scale = Vector2( 0.813063, 0.730088 )
 text = "play the game "
 script = ExtResource( 1 )
-
+__meta__ = {
+"_edit_use_anchors_": false
+}
+scene_to_load = "res://gamescences/zap,wack and bonk.tscn"
 [connection signal="pressed" from="play the game" to="play the game" method="_on_play_the_game_pressed"]

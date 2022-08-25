@@ -1,6 +1,6 @@
 extends Button
 
-
+export(String) var scene_to_load 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,4 +17,4 @@ func _ready():
 
 
 func _on_play_the_game_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene(scene_to_load)
