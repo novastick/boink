@@ -2,9 +2,10 @@ extends KinematicBody
 
 
 # Physics
-var movementSpeed = 1.0 		# How fast the player can move.
-var jumpStrength = 1.0 		# How much force used to make player jump
+var movementSpeed = 6.9 		# How fast the player can move.
+var jumpStrength = 30.0 		# How much force used to make player jump
 var gravity = 10.0			# Gravity's strength.
+
 
 # cam look
 var minCamVerticalAngle = -90.0		# Limit camera view to straight down.
@@ -39,3 +40,36 @@ func _process (delta):
   
 	# reset the mouse delta vector
 	mouseDelta = Vector2()
+# called every physics step
+func _physics_process (delta):
+	# reset the x and z velocity
+	playerVelocity.x = 0
+	playerVelocity.z = 0
+	var input = Vector2()
+	# movement inputs
+	if Input.is_action_pressed("player_forward"):
+		input.y -= 1
+	if Input.is_action_pressed("player_backward"):
+		input.y += 1
+	if Input.is_action_pressed("player_left"):
+		input.x -= 1
+	if Input.is_action_pressed("player_right"):
+		input.x += 1
+	# normalize the input so we can't move faster diagonally
+	input = input.normalized()
+	# get our forward and right directions
+	var forward = global_transform.basis.z
+	var right = global_transform.basis.x
+	# set the velocity
+	playerVelocity.z = (forward * input.y + right * input.x).z * movementSpeed
+	playerVelocity.x = (forward * input.y + right * input.x).x * movementSpeed
+	# apply gravity
+	playerVelocity.y -= gravity * delta
+#	print(playerVelocity.y)
+	# move the player
+	playerVelocity = move_and_slide(playerVelocity, Vector3.UP)
+	# jump if we press the jump button and are standing on the floor
+	if Input.is_action_pressed("jump") and is_on_floor():
+		playerVelocity.y = jumpStrength
+
+
