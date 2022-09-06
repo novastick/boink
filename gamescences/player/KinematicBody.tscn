@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://player.gd" type="Script" id=2]
@@ -7,14 +7,28 @@
 radius = 0.75
 height = 1.75
 
-[node name="KinematicBody" type="KinematicBody"]
+[sub_resource type="CapsuleMesh" id=2]
+
+[node name="playerBody" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0197, 0 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 1 )
 
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = null
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00492954, 0.75, 0.00790906 )
 environment = ExtResource( 1 )
 current = true
+
+[node name="RayCast" type="RayCast" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0833626, -0.0596771, -0.0482388 )
+enabled = true
+cast_to = Vector3( 0, 0, -3 )
+
+[node name="holdposition" type="Spatial" parent="Camera"]

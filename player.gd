@@ -18,7 +18,7 @@ var mouseDelta : Vector2 = Vector2()			# How much the mouse has moved since last
 
 # player components
 onready var camera = get_node("Camera")		# "attach" the camera to access from script.
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	pass # Replace with function body.
 
@@ -40,7 +40,19 @@ func _process (delta):
   
 	# reset the mouse delta vector
 	mouseDelta = Vector2()
-# called every physics step
+	
+	if Input.is_action_just_pressed("leftclick"):
+		var direct_state = get_world().direct_space_state
+		var collison = direct_state.intersect_ray(transform.origin, Vector3(0, 0, -20))
+		
+		if collison:
+			print(collison.position)
+	
+	
+	
+#
+
+
 func _physics_process (delta):
 	# reset the x and z velocity
 	playerVelocity.x = 0
@@ -71,5 +83,3 @@ func _physics_process (delta):
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
 		playerVelocity.y = jumpStrength
-
-
