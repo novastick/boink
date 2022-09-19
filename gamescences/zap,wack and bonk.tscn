@@ -4,7 +4,7 @@
 [ext_resource path="res://gamescences/player/KinematicBody.tscn" type="PackedScene" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 50, 50 )
+size = Vector2( 100, 100 )
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
@@ -29,6 +29,7 @@ material/0 = SubResource( 2 )
 [node name="StaticBody" type="StaticBody" parent="floor"]
 
 [node name="CollisionShape" type="CollisionShape" parent="floor/StaticBody"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
