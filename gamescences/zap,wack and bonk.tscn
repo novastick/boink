@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://images/sand.jpeg" type="Texture" id=1]
 [ext_resource path="res://gamescences/player/KinematicBody.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gamescences/wall/wall .tscn" type="PackedScene" id=3]
+[ext_resource path="res://gamescences/enemy/badguy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 100, 100 )
@@ -15,6 +17,14 @@ data = PoolVector3Array( 25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, 
 [sub_resource type="BoxShape" id=4]
 
 [sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="BoxShape" id=6]
+
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="NavigationMesh" id=8]
+cell/size = 1.0
+cell/height = 1.5
 
 [node name="zap,wack and bonk" type="Spatial"]
 
@@ -44,5 +54,44 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47185, 1.37005, -4.15666 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody/CollisionShape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.4083 )
 mesh = SubResource( 5 )
+material/0 = null
+
+[node name="bad guy " type="RigidBody" parent="."]
+
+[node name="CollisionShape2" type="CollisionShape" parent="bad guy "]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.45169, -10.2898 )
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="bad guy /CollisionShape2"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 8 )
+
+[node name="wall " parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3439, 12.7495, -1.69125 )
+
+[node name="wall 2" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -4.57551, 12.6898, 31.3635 )
+
+[node name="wall 3" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -6.4279, 11.7922, -37.1079 )
+
+[node name="wall 4" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2161, 11.5613, -3.33803 )
+
+[node name="badguy" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33076, 6.90697, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="badguy"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.45169, -10.2898 )
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="badguy/CollisionShape"]
+mesh = SubResource( 7 )
 material/0 = null

@@ -2,8 +2,8 @@ extends KinematicBody
 
 
 # Physics
-var movementSpeed = 6.9 		# How fast the player can move.
-var jumpStrength = 30.0 		# How much force used to make player jump
+var movementSpeed = 15 	 	# How fast the player can move.
+var jumpStrength = 10.0 		# How much force used to make player jump
 var gravity = 10.0			# Gravity's strength.
 
 
