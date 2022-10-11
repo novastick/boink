@@ -30,6 +30,7 @@ func _input (event):
 		mouseDelta = event.relative
 
 func _process (delta):
+	$Camera/hud_score/current_score.text = str(global.current_score)
 	# rotate camera along X axis
 	camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * delta
 	# clamp the vertical camera rotation

@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
-[ext_resource path="res://player.gd" type="Script" id=2]
+[ext_resource path="res://gamescences/player/player.gd" type="Script" id=2]
+[ext_resource path="res://images/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://gamescences/player/current_score.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
 height = 1.75
 
 [sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
 
 [node name="playerBody" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0197, 0 )
@@ -32,3 +37,25 @@ enabled = true
 cast_to = Vector3( 0, 0, -3 )
 
 [node name="holdposition" type="Spatial" parent="Camera"]
+
+[node name="hud_score" type="CanvasLayer" parent="Camera"]
+
+[node name="score" type="Label" parent="Camera/hud_score"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 4 )
+text = "score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="current_score" type="Label" parent="Camera/hud_score"]
+margin_left = 50.5263
+margin_top = 4.21053
+margin_right = 90.5263
+margin_bottom = 18.2105
+text = "0"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

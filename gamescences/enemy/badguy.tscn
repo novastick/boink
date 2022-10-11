@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gamescences/enemy/badguy.gd" type="Script" id=1]
 
@@ -6,6 +6,8 @@
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.0941176, 0.223529, 0.45098, 1 )
+
+[sub_resource type="BoxShape" id=3]
 
 [node name="badguy" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -17,4 +19,7 @@ material/0 = SubResource( 2 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

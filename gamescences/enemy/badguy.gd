@@ -28,5 +28,8 @@ func _ready():
 #	pass
 
 
+
+
+
 func _on_Timer_timeout():
 	move_to(player.global_transform.origin)
