@@ -6,6 +6,15 @@ var movementSpeed = 15 	 	# How fast the player can move.
 var jumpStrength = 10.0 		# How much force used to make player jump
 var gravity = 10.0			# Gravity's strength.
 
+onready var bulletScene = preload("res://gamescences/bullet/bulletr.tscn")
+onready var bulletSpawn = get_node("gun")
+var ammo : int = 15
+
+#onready var guns = [$gun]
+#onready var main = get_tree().current_scene
+#var bullet = load("res://gamescences/bullet/bulletr.tscn")
+
+
 
 # cam look
 var minCamVerticalAngle = -90.0		# Limit camera view to straight down.
@@ -42,16 +51,17 @@ func _process (delta):
 	# reset the mouse delta vector
 	mouseDelta = Vector2()
 	
+	if Input.is_action_just_pressed("ui_shoot"):
+		shoot()
+	
 	if Input.is_action_just_pressed("leftclick"):
 		var direct_state = get_world().direct_space_state
 		var collison = direct_state.intersect_ray(transform.origin, Vector3(0, 0, -20))
 		
-		if collison:
-			print(collison.position)
+		
 	
 	
-	
-#
+
 
 
 func _physics_process (delta):
@@ -84,3 +94,11 @@ func _physics_process (delta):
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
 		playerVelocity.y = jumpStrength
+
+
+func shoot ():
+	var bullet = bulletScene.instance()
+	get_node("res://gamescences/bullet/bulletr.tscn").add_child(bullet)
+	bullet.global_transform = bulletSpawn.global_transform
+	bullet.scale = Vector3(0.1,0.1,0.1)
+	ammo -= 1
