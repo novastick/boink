@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.921569, 0, 1, 1 )
+
+[node name="piller" type="Spatial"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+use_collision = true
+height = 4.155
+sides = 64
+material = SubResource( 1 )

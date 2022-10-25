@@ -1,7 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="wall " type="Spatial"]
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 14.2096, 0, 0, 0, 47.99, 0, 1.82918, 0 )
 use_collision = true
+material = SubResource( 1 )
