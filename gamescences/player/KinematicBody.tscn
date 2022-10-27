@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://gamescences/player/player.gd" type="Script" id=2]
@@ -13,6 +13,16 @@ height = 1.75
 
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 3 )
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.4
+height = 0.1
+
+[sub_resource type="CapsuleMesh" id=5]
+radius = 0.1
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.345098, 0.709804, 0.258824, 1 )
 
 [node name="playerBody" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0197, 0 )
@@ -60,4 +70,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="gun" type="Spatial" parent="."]
+[node name="gun" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.00492954, -0.75, -1.6191 )
+
+[node name="KinematicBody" type="KinematicBody" parent="Camera/gun"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -0.0837512 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Camera/gun/KinematicBody"]
+shape = SubResource( 4 )
+
+[node name="CSGMesh" type="CSGMesh" parent="Camera/gun/KinematicBody/CollisionShape"]
+mesh = SubResource( 5 )
+material = SubResource( 6 )

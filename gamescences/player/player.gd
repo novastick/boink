@@ -7,7 +7,7 @@ var jumpStrength = 10.0 		# How much force used to make player jump
 var gravity = 10.0			# Gravity's strength.
 
 onready var bulletScene = preload("res://gamescences/bullet/bulletr.tscn")
-onready var bulletSpawn = get_node("gun")
+onready var bulletSpawn = get_node("Camera/gun")
 var ammo : int = 15
 
 #onready var guns = [$gun]
@@ -52,7 +52,7 @@ func _process (delta):
 	mouseDelta = Vector2()
 	
 	if Input.is_action_just_pressed("ui_shoot"):
-		shoot()
+		shoot();
 	
 	if Input.is_action_just_pressed("leftclick"):
 		var direct_state = get_world().direct_space_state
@@ -98,7 +98,7 @@ func _physics_process (delta):
 
 func shoot ():
 	var bullet = bulletScene.instance()
-	get_node("res://gamescences/bullet/bulletr.tscn").add_child(bullet)
+	get_node("Camera/gun").add_child(bullet)
 	bullet.global_transform = bulletSpawn.global_transform
 	bullet.scale = Vector3(0.1,0.1,0.1)
 	ammo -= 1

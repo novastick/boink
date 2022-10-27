@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.427451, 0, 0.996078, 1 )
+
+[node name="Splatform 2 " type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+use_collision = true
+width = 2.615
+height = 0.205
+depth = 33.445
+material = SubResource( 1 )
