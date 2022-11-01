@@ -5,14 +5,20 @@
 [node name="main menu" type="Node2D"]
 scale = Vector2( 0.984796, 1.40625 )
 
-[node name="play the game" type="Button" parent="."]
-margin_right = 12.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="play the game" type="Button" parent="VBoxContainer"]
+margin_right = 106.0
 margin_bottom = 20.0
-rect_scale = Vector2( 0.813063, 0.730088 )
 text = "play the game "
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 scene_to_load = "res://gamescences/zap,wack and bonk.tscn"
-[connection signal="pressed" from="play the game" to="play the game" method="_on_play_the_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/play the game" to="VBoxContainer/play the game" method="_on_play_the_game_pressed"]
