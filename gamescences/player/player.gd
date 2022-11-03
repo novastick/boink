@@ -7,7 +7,7 @@ var jumpStrength = 10.0 		# How much force used to make player jump
 var gravity = 10.0			# Gravity's strength.
 
 onready var bulletScene = preload("res://gamescences/bullet/bulletr.tscn")
-onready var bulletSpawn = get_node("gun/KinematicBody/CollisionShape")
+onready var bulletSpawn = get_node("Camera/bullet spwan")
 var ammo : int = 15
 
 #onready var guns = [$gun]
@@ -98,7 +98,7 @@ func _physics_process (delta):
 
 func shoot ():
 	var bullet = bulletScene.instance()
-	get_node("gun").add_child(bullet)
+	get_node("/root/zap,wack and bonk").add_child(bullet)
 	bullet.global_transform = bulletSpawn.global_transform
 	bullet.scale = Vector3(0.1,0.1,0.1)
 	ammo -= 1

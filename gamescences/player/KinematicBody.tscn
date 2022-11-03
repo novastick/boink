@@ -31,13 +31,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00492954, 0.75, 0.00790906 
 environment = ExtResource( 1 )
 current = true
 
-[node name="RayCast" type="RayCast" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0833626, -0.0596771, -0.0482388 )
-enabled = true
-cast_to = Vector3( 0, 0, -3 )
-
-[node name="holdposition" type="Spatial" parent="Camera"]
-
 [node name="hud_score" type="CanvasLayer" parent="Camera"]
 
 [node name="score" type="Label" parent="Camera/hud_score"]
@@ -59,3 +52,5 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="bullet spwan" type="Spatial" parent="Camera"]

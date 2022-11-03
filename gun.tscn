@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.215686, 0.847059, 0.105882, 1 )
+
+[node name="gun" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.200263 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.75, 0, 0, -2.19838 )
+shape = SubResource( 1 )
+
+[node name="CSGMesh" type="CSGMesh" parent="KinematicBody/CollisionShape"]
+mesh = SubResource( 2 )
+material = SubResource( 3 )

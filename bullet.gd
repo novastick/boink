@@ -7,7 +7,7 @@ var damage : int = 1
 
 func _process (delta):
 	# move the bullet forwards
-	translation += global_transform.basis.z * speed * delta
+	translation -= global_transform.basis.z * speed * delta
 
 
 
